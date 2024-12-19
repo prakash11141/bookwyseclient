@@ -4,7 +4,16 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import axios from "axios";
-import { Form, Input, Button, message, Spin, notification, Alert } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  message,
+  Spin,
+  notification,
+  Alert,
+  Radio,
+} from "antd";
 
 const EditOrganizationPage: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -154,11 +163,14 @@ const EditOrganizationPage: React.FC = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            name="status"
             label="Status"
-            rules={[{ required: true, message: "Please input the status!" }]}
+            name="isActive"
+            rules={[{ required: true, message: "Please select the status!" }]}
           >
-            <Input />
+            <Radio.Group defaultValue={true}>
+              <Radio value={true}>Active</Radio>
+              <Radio value={false}>Inactive</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item
             name="subscriptionPlan"

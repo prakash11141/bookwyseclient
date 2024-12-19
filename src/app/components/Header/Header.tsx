@@ -5,11 +5,12 @@ import { Menu } from "antd";
 import { useRouter } from "next/navigation";
 
 import UserAvatar from "./UserAvatar";
-
+const isLoggedIn =
+  typeof window !== "undefined" && localStorage.getItem("token");
 const items1 = [
   { key: "/", label: "Home" },
   { key: "/about", label: "About" },
-  { key: "/login", label: "Login" },
+  ...(isLoggedIn ? [] : [{ key: "/login", label: "Login" }]),
 ];
 
 const Header: React.FC = () => {
@@ -46,7 +47,7 @@ const Header: React.FC = () => {
           borderBottom: "none", // Removes default border in the dark theme
         }}
       />
-      <UserAvatar />
+      {isLoggedIn && <UserAvatar />}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const OrganizationList = () => {
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
     search: "",
-    status: "",
+    isActive: null,
     subscriptionPlan: "",
     page: 1,
     limit: 10,
@@ -34,7 +34,7 @@ const OrganizationList = () => {
         {
           params: {
             search: filters.search,
-            status: filters.status,
+            isActive: filters.isActive,
             subscriptionPlan: filters.subscriptionPlan,
             page: filters.page,
             limit: filters.limit,
@@ -92,8 +92,9 @@ const OrganizationList = () => {
     },
     {
       title: "Status",
-      dataIndex: "status",
-      key: "status",
+      dataIndex: "isActive",
+      key: "isActive",
+      render: (isActive: boolean) => (isActive ? "Active" : "Inactive"),
     },
     {
       title: "Subscription Plan",
@@ -123,15 +124,15 @@ const OrganizationList = () => {
             placeholder="Search by organization name"
           />
         </Form.Item>
-        <Form.Item label="Status" name="status">
+        <Form.Item label="Status" name="isActive">
           <Select
-            value={filters.status}
-            onChange={(value) => handleFilterChange({ status: value })}
+            value={filters.isActive}
+            onChange={(value) => handleFilterChange({ isActive: value })}
             placeholder="Select status"
             allowClear
           >
-            <Option value="active">Active</Option>
-            <Option value="inactive">Inactive</Option>
+            <Option value={true}>Active</Option>
+            <Option value={false}>Inactive</Option>
           </Select>
         </Form.Item>
         <Form.Item label="Subscription Plan" name="subscriptionPlan">
