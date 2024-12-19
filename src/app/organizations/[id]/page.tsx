@@ -133,7 +133,7 @@ const EditOrganizationPage: React.FC = () => {
         <h1>Edit Organization</h1>
         {showAlert && (
           <Alert
-            message="Organization added successfully!"
+            message="Organization updated successfully!"
             type="success"
             showIcon
             closable

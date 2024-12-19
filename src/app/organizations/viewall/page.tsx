@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Row, Col, Spin, message, Button } from "antd";
+import { Card, Row, Col, Spin, message, Button, Radio } from "antd";
 import { useRouter } from "next/navigation";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 
@@ -85,7 +85,38 @@ const ViewAllPage: React.FC = () => {
                   bordered={false}
                   style={{ width: "100%", position: "relative" }}
                 >
-                  <p>Status: {org.status}</p>
+                  {/* Radio buttons to display the status */}
+                  <p>
+                    Status:
+                    <Radio.Group
+                      value={org.isActive ? "Active" : "Inactive"}
+                      disabled
+                      style={{
+                        opacity: 1,
+                        pointerEvents: "none",
+                        width: "100%",
+                      }}
+                    >
+                      <Radio
+                        value="Active"
+                        style={{
+                          color: org.isActive ? "green" : "gray",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Active
+                      </Radio>
+                      <Radio
+                        value="Inactive"
+                        style={{
+                          color: !org.isActive ? "red" : "gray",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Inactive
+                      </Radio>
+                    </Radio.Group>
+                  </p>
                   <p>Subscription Plan: {org.subscriptionPlan}</p>
                   <div
                     style={{

@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Avatar, Menu } from "antd";
+import { Menu } from "antd";
 import { useRouter } from "next/navigation";
-import { UserOutlined } from "@ant-design/icons";
+
 import UserAvatar from "./UserAvatar";
 
 const items1 = [

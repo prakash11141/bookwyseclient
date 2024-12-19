@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Form, Input, Card, message, Alert } from "antd";
+import { Button, Form, Input, Card, message, Alert, Radio } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -80,11 +80,14 @@ const AddOrganization: React.FC = () => {
           </Form.Item>
           <Form.Item
             label="Status"
-            name="status"
-            rules={[{ required: true, message: "Please input the status!" }]}
+            name="isActive"
+            rules={[{ required: true, message: "Please select the status!" }]}
           >
-            <Input placeholder="Status" />
-          </Form.Item>
+            <Radio.Group defaultValue={true}>
+              <Radio value={true}>Active</Radio>
+              <Radio value={false}>Inactive</Radio>
+            </Radio.Group>
+          </Form.Item>  
           <Form.Item
             label="Subscription Plan"
             name="subscriptionPlan"
